@@ -30,10 +30,27 @@ return tempArray;
 
 void PrintArray(string[] array)
 {
-    Console.WriteLine($"[{string.Join(", ", array)}]");
+    Console.Write($"[{string.Join(", ", array)}]");
 }
 
+string[] ArrayTrimmer(string[] array, int stringLength)
+{
+    string[] tempArray = new string[0];
+    int count = 0;
+    for (int i = 0; i < array.Length; i++){
+        if (array[i].Length <= stringLength) {
+            Array.Resize(ref tempArray, count+1);
+            tempArray[count] = array[i];
+            count ++;
+        }
+    }
+    return tempArray;
+}
 
 int size = ReadInt("Введите размер массива: ");
 string[] myArray = FillArray(size);
-PrintArray(myArray);
+string[] newArray = ArrayTrimmer(myArray, 3);
+PrintArray(myArray); 
+Console.Write(" -> ");
+PrintArray(newArray);
+Console.WriteLine();
